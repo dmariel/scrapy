@@ -1,4 +1,5 @@
 import atexit
+import inspect
 
 class Singleton(type):
     _instances = {}
@@ -13,10 +14,13 @@ class Tracer(metaclass=Singleton):
         atexit.register(self.cleanup)
 
     def visited(self, id):
-        self.traces.add(id)
+        caller = inspect.stack()[1][3]
+        id_formatted = "{:02d}".format(id)
+        self.traces.add(f"{caller}:  #{id_formatted}")
 
     def cleanup(self):
+        sorted_calls = list(sorted(self.traces))
         f = open('./traces.txt', 'w')
-        f.write(str(self.traces))
+        f.write("\n".join(sorted_calls))
         f.close()
 
