@@ -49,6 +49,25 @@ class Base:
                 Link(url='http://example.com/sample3.html#foo', text='sample 3 repetition with fragment')
             ])
 
+        def test_extract_filter_allow_no_invalid_urls(self):
+            lx = self.extractor_cls(allow=('sample', ))
+            body = b"""
+<head>
+<base href='http://example.com' />
+<title>Sample page with links for testing LinkExtractor</title>
+</head>
+<body>
+<a href='http://example.com/sample1.html'>valid</a>
+<a href='htp://example.com/sample1.html'>invalid</a>
+</body>
+</html>
+            """
+            response = HtmlResponse(url='http://example.com/index', body=body)
+            self.assertEqual([link for link in lx.extract_links(response)], [
+                Link(url='http://example.com/sample1.html', text='valid', fragment='', nofollow=False),
+            ])
+
+
         def test_extract_filter_allow_with_duplicates(self):
             lx = self.extractor_cls(allow=('sample', ), unique=False)
             self.assertEqual([link for link in lx.extract_links(self.response)], [
