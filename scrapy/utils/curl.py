@@ -1,10 +1,13 @@
 import argparse
+from inspect import trace
 import warnings
 from shlex import split
 from http.cookies import SimpleCookie
 from urllib.parse import urlparse
 
 from w3lib.http import basic_auth_header
+
+from scrapy.utils.tracer import Tracer
 
 
 class CurlParser(argparse.ArgumentParser):
@@ -44,19 +47,31 @@ def curl_to_request_kwargs(curl_command, ignore_unknown_options=True):
     :return: dictionary of Request kwargs
     """
 
+    tracer = Tracer()
+
+    tracer.visited(1)
+
     curl_args = split(curl_command)
 
     if curl_args[0] != 'curl':
+        tracer.visited(2)
         raise ValueError('A curl command must start with "curl"')
+    else:
+        tracer.visited(3)
 
     parsed_args, argv = curl_parser.parse_known_args(curl_args[1:])
 
     if argv:
+        tracer.visited(4)
         msg = f'Unrecognized options: {", ".join(argv)}'
         if ignore_unknown_options:
+            tracer.visited(5)
             warnings.warn(msg)
         else:
+            tracer.visited(6)
             raise ValueError(msg)
+    else:
+        tracer.visited(7)
 
     url = parsed_args.url
 
@@ -64,7 +79,10 @@ def curl_to_request_kwargs(curl_command, ignore_unknown_options=True):
     # needs the scheme to work
     parsed_url = urlparse(url)
     if not parsed_url.scheme:
+        tracer.visited(8)
         url = 'http://' + url
+    else:
+        tracer.visited(9)
 
     method = parsed_args.method or 'GET'
 
@@ -73,28 +91,49 @@ def curl_to_request_kwargs(curl_command, ignore_unknown_options=True):
     headers = []
     cookies = {}
     for header in parsed_args.headers or ():
+        tracer.visited(10)
         name, val = header.split(':', 1)
         name = name.strip()
         val = val.strip()
         if name.title() == 'Cookie':
+            tracer.visited(11)
             for name, morsel in SimpleCookie(val).items():
+                tracer.visited(12)
                 cookies[name] = morsel.value
         else:
+            tracer.visited(13)
             headers.append((name, val))
 
     if parsed_args.auth:
+        tracer.visited(14)
         user, password = parsed_args.auth.split(':', 1)
         headers.append(('Authorization', basic_auth_header(user, password)))
+    else:
+        tracer.visited(15)
 
     if headers:
+        tracer.visited(16)
         result['headers'] = headers
+    else:
+        tracer.visited(17)
     if cookies:
+        tracer.visited(18)
         result['cookies'] = cookies
+    else:
+        tracer.visited(19)
     if parsed_args.data:
+        tracer.visited(20)
         result['body'] = parsed_args.data
         if not parsed_args.method:
+            tracer.visited(21)
             # if the "data" is specified but the "method" is not specified,
             # the default method is 'POST'
             result['method'] = 'POST'
+        else:
+            tracer.visited(22)
+    else:
+        tracer.visited(23)
+
+    tracer.visited(24)
 
     return result
