@@ -1079,6 +1079,20 @@ class FormRequestTest(RequestTest):
         self.assertRaises(ValueError, self.request_class.from_response,
                           response, formxpath="//form/input[@name='abc']")
 
+    def test_from_response_xpath_with_invalid_xpath(self):
+        response = _buildresponse(
+            """<form action="post.php" method="POST">
+            <input type="hidden" name="one" value="1">
+            <input type="hidden" name="two" value="2">
+            </form>
+            <form action="post2.php" method="POST">
+            <input type="hidden" name="three" value="3">
+            <input type="hidden" name="four" value="4">
+            </form>
+            <div></div>""")
+        with self.assertRaises(ValueError):
+            self.request_class.from_response(response, formxpath="//div")
+
     def test_from_response_unicode_xpath(self):
         response = _buildresponse(b'<form name="\xd1\x8a"></form>')
         r = self.request_class.from_response(response, formxpath="//form[@name='\u044a']")
@@ -1215,6 +1229,17 @@ class FormRequestTest(RequestTest):
         response = _buildresponse(body % 'UNKNOWN')
         r = self.request_class.from_response(response)
         self.assertEqual(r.method, 'GET')
+
+    def test_from_response_with_invalid_formdata(self):
+        response = _buildresponse(
+            """<form action="get.php" method="GET">
+            <input type="submit" name="clickable1" value="clicked1">
+            <input type="hidden" name="one" value="1">
+            <input type="hidden" name="two" value="3">
+            <input type="submit" name="clickable2" value="clicked2">
+            </form>""")
+        with self.assertRaises(ValueError):
+            self.request_class.from_response(response, formdata=True)
 
 
 def _buildresponse(body, **kwargs):
