@@ -418,6 +418,22 @@ class GenspiderCommandTest(CommandTest):
     def test_same_name_as_project(self):
         self.assertEqual(2, self.call('genspider', self.project_name))
         assert not exists(join(self.proj_mod_path, 'spiders', f'{self.project_name}.py'))
+    
+    def test_same_name_as_module(self):
+        args = [f'--template=basic']
+        spname = self.project_name
+        spmodule = f"{self.project_name}.spiders.{spname}"
+
+        p, out, err = self.proc('genspider', spname, 'test.com', *args)
+        self.assertIn("Cannot create a spider with the same name as your project", out)
+        
+    def test_non_existent_template(self):
+        args = ['--template=thistemplatedoesnotexist']
+        spname = "test_spider"
+        spmodule = f"{self.project_name}.spiders.{spname}"
+
+        p, out, err = self.proc('genspider', spname, 'test.com', *args)
+        self.assertIn("Unable to find template: ", out)
 
     def test_same_filename_as_existing_spider(self, force=False):
         file_name = 'example'
