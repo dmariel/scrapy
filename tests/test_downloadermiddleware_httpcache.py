@@ -404,6 +404,19 @@ class RFC2616PolicyTest(DefaultStorageTest):
                 self.assertEqualResponse(res1, res3)
                 assert 'cached' in res3.flags
 
+    def test_cached_and_max_stale(self):
+        status, headers = (200, {'Age': '305', 'Cache-Control': 'max-age=300'})
+        req = Request(f'http://example-1.com', headers={'Cache-Control': 'max-stale=6'})
+        res = Response(req.url, status=status, headers=headers)
+        # cache expired response
+        with self._middleware(HTTPCACHE_ALWAYS_STORE=True) as mw:
+            # Run first time to cache
+            self._process_requestresponse(mw, req, res)
+
+            # res1 should be cached
+            res1 = self._process_requestresponse(mw, req, None)
+            self.assertIsNotNone(res1)
+
     def test_cached_and_stale(self):
         sampledata = [
             (200, {'Date': self.today, 'Expires': self.yesterday}),
