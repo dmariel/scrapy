@@ -2,7 +2,22 @@ from urllib.parse import urlparse
 from unittest import TestCase
 
 from scrapy.http import Request, Response
-from scrapy.http.cookies import WrappedRequest, WrappedResponse
+from scrapy.http.cookies import WrappedRequest, WrappedResponse, CookieJar
+
+from unittest.mock import Mock
+
+
+class TestCookieJar(TestCase):
+    def test_add_cookie_header_clear_expired_cookies_based_on_check_frequency(self):
+        jar = CookieJar(check_expired_frequency=2)
+        jar.jar.clear_expired_cookies = Mock()
+
+        request = Request("http://www.example.com/page.html", headers={"Content-Type": "text/html"})
+
+        jar.add_cookie_header(request)
+        jar.jar.clear_expired_cookies.assert_not_called()
+        jar.add_cookie_header(request)
+        jar.jar.clear_expired_cookies.assert_called_once()
 
 
 class WrappedRequestTest(TestCase):
