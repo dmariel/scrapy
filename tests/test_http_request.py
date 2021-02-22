@@ -635,6 +635,19 @@ class FormRequestTest(RequestTest):
         self.assertEqual(fs[b'one'], [b'1'])
         self.assertEqual(fs[b'two'], [b'2'])
 
+    def test_from_response_with_invalid_formdata(self):
+        response = _buildresponse(
+            """<form action="get.php" method="GET">
+            <input type="submit" name="clickable1" value="clicked1">
+            <input type="hidden" name="one" value="1">
+            <input type="hidden" name="two" value="3">
+            <input type="submit" name="clickable2" value="clicked2">
+            </form>""")
+        with self.assertRaises(ValueError):
+            self.request_class.from_response(response, formdata={True})
+        
+        
+
     def test_from_response_submit_not_first_clickable(self):
         response = _buildresponse(
             """<form action="get.php" method="GET">
