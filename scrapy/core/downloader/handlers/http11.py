@@ -28,6 +28,7 @@ from scrapy.responsetypes import responsetypes
 from scrapy.utils.misc import create_instance, load_object
 from scrapy.utils.python import to_bytes, to_unicode
 
+from scrapy.utils.tracer import Tracer
 
 logger = logging.getLogger(__name__)
 
@@ -512,9 +513,14 @@ class _ResponseReader(protocol.Protocol):
             self._ip_address = ipaddress.ip_address(self.transport._producer.getPeer().host)
 
     def dataReceived(self, bodyBytes):
+        tracer = Tracer()
+        tracer.visited(1)
         # This maybe called several times after cancel was called with buffered data.
         if self._finished.called:
+            tracer.visited(2)
             return
+        else:
+            tracer.visited(3)
 
         self._bodybuf.write(bodyBytes)
         self._bytes_received += len(bodyBytes)
@@ -527,13 +533,22 @@ class _ResponseReader(protocol.Protocol):
         )
         for handler, result in bytes_received_result:
             if isinstance(result, Failure) and isinstance(result.value, StopDownload):
+                tracer.visited(4)
                 logger.debug("Download stopped for %(request)s from signal handler %(handler)s",
                              {"request": self._request, "handler": handler.__qualname__})
                 self.transport._producer.loseConnection()
-                failure = result if result.value.fail else None
+                failure = None
+                if result.value.fail:
+                    failure = result 
+                    tracer.visited(5)
+                else: 
+                    tracer.visited(6)
                 self._finish_response(flags=["download_stopped"], failure=failure)
+            else:
+                tracer.visited(7)
 
         if self._maxsize and self._bytes_received > self._maxsize:
+            tracer.visited(8)
             logger.warning("Received (%(bytes)s) bytes larger than download "
                            "max size (%(maxsize)s) in request %(request)s.",
                            {'bytes': self._bytes_received,
@@ -542,13 +557,20 @@ class _ResponseReader(protocol.Protocol):
             # Clear buffer earlier to avoid keeping data in memory for a long time.
             self._bodybuf.truncate(0)
             self._finished.cancel()
+        else:
+            tracer.visited(9)
 
         if self._warnsize and self._bytes_received > self._warnsize and not self._reached_warnsize:
+            tracer.visited(10)
             self._reached_warnsize = True
             logger.warning("Received more bytes than download "
                            "warn size (%(warnsize)s) in request %(request)s.",
                            {'warnsize': self._warnsize,
                             'request': self._request})
+        else:
+            tracer.visited(11)
+        
+        tracer.visited(12)
 
     def connectionLost(self, reason):
         if self._finished.called:
