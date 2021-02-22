@@ -172,6 +172,12 @@ class UtilsPythonTestCase(unittest.TestCase):
                 gc.collect()
         self.assertFalse(len(wk._weakdict))
 
+    def test_get_func_args_with_invalid_types(self):
+        self.assertRaises(TypeError, get_func_args, 1)
+        self.assertRaises(TypeError, get_func_args, "string")
+        self.assertRaises(TypeError, get_func_args, [])
+        self.assertRaises(TypeError, get_func_args, b"bytes")
+
     def test_get_func_args(self):
         def f1(a, b, c):
             pass
