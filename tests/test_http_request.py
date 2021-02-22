@@ -379,6 +379,17 @@ class FormRequestTest(RequestTest):
         r1 = self.request_class("http://www.example.com", formdata={})
         self.assertEqual(r1.body, b'')
 
+    def test_value_error_input_values(self):
+        response = _buildresponse(
+            b"""<form action="post.php" method="POST">
+            <input type="hidden" name="test" value="val1">
+            <input type="hidden" name="test" value="val2">
+            <input type="hidden" name="test2" value="xxx">
+            </form>""",
+            url="http://www.example.com/this/list.html")
+
+        self.assertRaises(ValueError, self.request_class.from_response, response, formdata="Invalid Form Data")
+
     def test_default_encoding_bytes(self):
         # using default encoding (utf-8)
         data = {b'one': b'two', b'price': b'\xc2\xa3 100'}
