@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for scrapy/utils/reactor.py: 83%</title>
+    <title>Coverage for scrapy/utils/reactor.py: 87%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
@@ -18,15 +18,15 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>scrapy/utils/reactor.py</b> :
-            <span class="pc_cov">83%</span>
+            <span class="pc_cov">87%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
             60 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">53 run</button>
-            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">7 missing</button>
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">55 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">5 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
-            <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">5 partial</button>
+            <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">6 partial</button>
         </h2>
     </div>
 </div>
@@ -75,8 +75,8 @@
     <p id="t20" class="par run show_par"><span class="n"><a href="#t20">20</a></span><span class="t">    <span class="key">for</span> <span class="nam">x</span> <span class="key">in</span> <span class="nam">range</span><span class="op">(</span><span class="nam">portrange</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">,</span> <span class="nam">portrange</span><span class="op">[</span><span class="num">1</span><span class="op">]</span> <span class="op">+</span> <span class="num">1</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">20&#x202F;&#x219B;&#x202F;exit</span><span class="annotate long">line 20 didn't return from function 'listen_tcp', because the loop on line 20 didn't complete</span></span></p>
     <p id="t21" class="run"><span class="n"><a href="#t21">21</a></span><span class="t">        <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t22" class="run"><span class="n"><a href="#t22">22</a></span><span class="t">            <span class="key">return</span> <span class="nam">reactor</span><span class="op">.</span><span class="nam">listenTCP</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">factory</span><span class="op">,</span> <span class="nam">interface</span><span class="op">=</span><span class="nam">host</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t23" class="mis show_mis"><span class="n"><a href="#t23">23</a></span><span class="t">        <span class="key">except</span> <span class="nam">error</span><span class="op">.</span><span class="nam">CannotListenError</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t24" class="mis show_mis"><span class="n"><a href="#t24">24</a></span><span class="t">            <span class="key">if</span> <span class="nam">x</span> <span class="op">==</span> <span class="nam">portrange</span><span class="op">[</span><span class="num">1</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t23" class="run"><span class="n"><a href="#t23">23</a></span><span class="t">        <span class="key">except</span> <span class="nam">error</span><span class="op">.</span><span class="nam">CannotListenError</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t24" class="par run show_par"><span class="n"><a href="#t24">24</a></span><span class="t">            <span class="key">if</span> <span class="nam">x</span> <span class="op">==</span> <span class="nam">portrange</span><span class="op">[</span><span class="num">1</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">24&#x202F;&#x219B;&#x202F;25</span><span class="annotate long">line 24 didn't jump to line 25, because the condition on line 24 was never true</span></span></p>
     <p id="t25" class="mis show_mis"><span class="n"><a href="#t25">25</a></span><span class="t">                <span class="key">raise</span>&nbsp;</span><span class="r"></span></p>
     <p id="t26" class="pln"><span class="n"><a href="#t26">26</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t27" class="pln"><span class="n"><a href="#t27">27</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -148,7 +148,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
-            created at 2021-02-18 12:27 +0100
+            created at 2021-02-23 12:32 +0100
         </p>
     </div>
 </div>

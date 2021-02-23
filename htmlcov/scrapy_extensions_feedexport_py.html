@@ -22,8 +22,8 @@
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            273 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">252 run</button>
+            278 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">257 run</button>
             <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">21 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
             <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">4 partial</button>
@@ -117,7 +117,7 @@
     <p id="t62" class="pln"><span class="n"><a href="#t62">62</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t63" class="pln"><span class="n"><a href="#t63">63</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t64" class="run"><span class="n"><a href="#t64">64</a></span><span class="t"><span class="op">@</span><span class="nam">implementer</span><span class="op">(</span><span class="nam">IFeedStorage</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t65" class="pln"><span class="n"><a href="#t65">65</a></span><span class="t"><span class="key">class</span> <span class="nam">BlockingFeedStorage</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t65" class="run"><span class="n"><a href="#t65">65</a></span><span class="t"><span class="key">class</span> <span class="nam">BlockingFeedStorage</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t66" class="pln"><span class="n"><a href="#t66">66</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t67" class="run"><span class="n"><a href="#t67">67</a></span><span class="t">    <span class="key">def</span> <span class="nam">open</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">spider</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t68" class="run"><span class="n"><a href="#t68">68</a></span><span class="t">        <span class="nam">path</span> <span class="op">=</span> <span class="nam">spider</span><span class="op">.</span><span class="nam">crawler</span><span class="op">.</span><span class="nam">settings</span><span class="op">[</span><span class="str">'FEED_TEMPDIR'</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
@@ -134,7 +134,7 @@
     <p id="t79" class="pln"><span class="n"><a href="#t79">79</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t80" class="pln"><span class="n"><a href="#t80">80</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t81" class="run"><span class="n"><a href="#t81">81</a></span><span class="t"><span class="op">@</span><span class="nam">implementer</span><span class="op">(</span><span class="nam">IFeedStorage</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t82" class="pln"><span class="n"><a href="#t82">82</a></span><span class="t"><span class="key">class</span> <span class="nam">StdoutFeedStorage</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t82" class="run"><span class="n"><a href="#t82">82</a></span><span class="t"><span class="key">class</span> <span class="nam">StdoutFeedStorage</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t83" class="pln"><span class="n"><a href="#t83">83</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t84" class="run"><span class="n"><a href="#t84">84</a></span><span class="t">    <span class="key">def</span> <span class="nam">__init__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">uri</span><span class="op">,</span> <span class="nam">_stdout</span><span class="op">=</span><span class="key">None</span><span class="op">,</span> <span class="op">*</span><span class="op">,</span> <span class="nam">feed_options</span><span class="op">=</span><span class="key">None</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t85" class="run"><span class="n"><a href="#t85">85</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">_stdout</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -154,7 +154,7 @@
     <p id="t99" class="pln"><span class="n"><a href="#t99">99</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t100" class="pln"><span class="n"><a href="#t100">100</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t101" class="run"><span class="n"><a href="#t101">101</a></span><span class="t"><span class="op">@</span><span class="nam">implementer</span><span class="op">(</span><span class="nam">IFeedStorage</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t102" class="pln"><span class="n"><a href="#t102">102</a></span><span class="t"><span class="key">class</span> <span class="nam">FileFeedStorage</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t102" class="run"><span class="n"><a href="#t102">102</a></span><span class="t"><span class="key">class</span> <span class="nam">FileFeedStorage</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t103" class="pln"><span class="n"><a href="#t103">103</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t104" class="run"><span class="n"><a href="#t104">104</a></span><span class="t">    <span class="key">def</span> <span class="nam">__init__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">uri</span><span class="op">,</span> <span class="op">*</span><span class="op">,</span> <span class="nam">feed_options</span><span class="op">=</span><span class="key">None</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t105" class="run"><span class="n"><a href="#t105">105</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">path</span> <span class="op">=</span> <span class="nam">file_uri_to_path</span><span class="op">(</span><span class="nam">uri</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -223,7 +223,7 @@
     <p id="t168" class="mis show_mis"><span class="n"><a href="#t168">168</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">blob_name</span> <span class="op">=</span> <span class="nam">u</span><span class="op">.</span><span class="nam">path</span><span class="op">[</span><span class="num">1</span><span class="op">:</span><span class="op">]</span>  <span class="com"># remove first "/"</span>&nbsp;</span><span class="r"></span></p>
     <p id="t169" class="pln"><span class="n"><a href="#t169">169</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t170" class="run"><span class="n"><a href="#t170">170</a></span><span class="t">    <span class="op">@</span><span class="nam">classmethod</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t171" class="pln"><span class="n"><a href="#t171">171</a></span><span class="t">    <span class="key">def</span> <span class="nam">from_crawler</span><span class="op">(</span><span class="nam">cls</span><span class="op">,</span> <span class="nam">crawler</span><span class="op">,</span> <span class="nam">uri</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t171" class="run"><span class="n"><a href="#t171">171</a></span><span class="t">    <span class="key">def</span> <span class="nam">from_crawler</span><span class="op">(</span><span class="nam">cls</span><span class="op">,</span> <span class="nam">crawler</span><span class="op">,</span> <span class="nam">uri</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t172" class="mis show_mis"><span class="n"><a href="#t172">172</a></span><span class="t">        <span class="key">return</span> <span class="nam">cls</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p id="t173" class="pln"><span class="n"><a href="#t173">173</a></span><span class="t">            <span class="nam">uri</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t174" class="pln"><span class="n"><a href="#t174">174</a></span><span class="t">            <span class="nam">crawler</span><span class="op">.</span><span class="nam">settings</span><span class="op">[</span><span class="str">'GCS_PROJECT_ID'</span><span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
@@ -298,7 +298,7 @@
     <p id="t243" class="run"><span class="n"><a href="#t243">243</a></span><span class="t"><span class="key">class</span> <span class="nam">FeedExporter</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t244" class="pln"><span class="n"><a href="#t244">244</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t245" class="run"><span class="n"><a href="#t245">245</a></span><span class="t">    <span class="op">@</span><span class="nam">classmethod</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t246" class="pln"><span class="n"><a href="#t246">246</a></span><span class="t">    <span class="key">def</span> <span class="nam">from_crawler</span><span class="op">(</span><span class="nam">cls</span><span class="op">,</span> <span class="nam">crawler</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t246" class="run"><span class="n"><a href="#t246">246</a></span><span class="t">    <span class="key">def</span> <span class="nam">from_crawler</span><span class="op">(</span><span class="nam">cls</span><span class="op">,</span> <span class="nam">crawler</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t247" class="run"><span class="n"><a href="#t247">247</a></span><span class="t">        <span class="nam">exporter</span> <span class="op">=</span> <span class="nam">cls</span><span class="op">(</span><span class="nam">crawler</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t248" class="run"><span class="n"><a href="#t248">248</a></span><span class="t">        <span class="nam">crawler</span><span class="op">.</span><span class="nam">signals</span><span class="op">.</span><span class="nam">connect</span><span class="op">(</span><span class="nam">exporter</span><span class="op">.</span><span class="nam">open_spider</span><span class="op">,</span> <span class="nam">signals</span><span class="op">.</span><span class="nam">spider_opened</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t249" class="run"><span class="n"><a href="#t249">249</a></span><span class="t">        <span class="nam">crawler</span><span class="op">.</span><span class="nam">signals</span><span class="op">.</span><span class="nam">connect</span><span class="op">(</span><span class="nam">exporter</span><span class="op">.</span><span class="nam">close_spider</span><span class="op">,</span> <span class="nam">signals</span><span class="op">.</span><span class="nam">spider_closed</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -546,7 +546,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
-            created at 2021-02-18 12:27 +0100
+            created at 2021-02-23 12:32 +0100
         </p>
     </div>
 </div>

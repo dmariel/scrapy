@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for scrapy/extensions/httpcache.py: 96%</title>
+    <title>Coverage for scrapy/extensions/httpcache.py: 97%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
@@ -18,13 +18,13 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>scrapy/extensions/httpcache.py</b> :
-            <span class="pc_cov">96%</span>
+            <span class="pc_cov">97%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
             241 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">234 run</button>
-            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">7 missing</button>
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">237 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">4 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
             <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">4 partial</button>
         </h2>
@@ -181,12 +181,12 @@
     <p id="t126" class="pln"><span class="n"><a href="#t126">126</a></span><span class="t">            <span class="com"># seconds. If no value is assigned to max-stale, then the</span>&nbsp;</span><span class="r"></span></p>
     <p id="t127" class="pln"><span class="n"><a href="#t127">127</a></span><span class="t">            <span class="com"># client is willing to accept a stale response of any age."</span>&nbsp;</span><span class="r"></span></p>
     <p id="t128" class="run"><span class="n"><a href="#t128">128</a></span><span class="t">            <span class="nam">staleage</span> <span class="op">=</span> <span class="nam">ccreq</span><span class="op">[</span><span class="str">b'max-stale'</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t129" class="par run show_par"><span class="n"><a href="#t129">129</a></span><span class="t">            <span class="key">if</span> <span class="nam">staleage</span> <span class="key">is</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">129&#x202F;&#x219B;&#x202F;132</span><span class="annotate long">line 129 didn't jump to line 132, because the condition on line 129 was never false</span></span></p>
+    <p id="t129" class="run"><span class="n"><a href="#t129">129</a></span><span class="t">            <span class="key">if</span> <span class="nam">staleage</span> <span class="key">is</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t130" class="run"><span class="n"><a href="#t130">130</a></span><span class="t">                <span class="key">return</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
     <p id="t131" class="pln"><span class="n"><a href="#t131">131</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t132" class="mis show_mis"><span class="n"><a href="#t132">132</a></span><span class="t">            <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t133" class="mis show_mis"><span class="n"><a href="#t133">133</a></span><span class="t">                <span class="key">if</span> <span class="nam">currentage</span> <span class="op">&lt;</span> <span class="nam">freshnesslifetime</span> <span class="op">+</span> <span class="nam">max</span><span class="op">(</span><span class="num">0</span><span class="op">,</span> <span class="nam">int</span><span class="op">(</span><span class="nam">staleage</span><span class="op">)</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t134" class="mis show_mis"><span class="n"><a href="#t134">134</a></span><span class="t">                    <span class="key">return</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t132" class="run"><span class="n"><a href="#t132">132</a></span><span class="t">            <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t133" class="par run show_par"><span class="n"><a href="#t133">133</a></span><span class="t">                <span class="key">if</span> <span class="nam">currentage</span> <span class="op">&lt;</span> <span class="nam">freshnesslifetime</span> <span class="op">+</span> <span class="nam">max</span><span class="op">(</span><span class="num">0</span><span class="op">,</span> <span class="nam">int</span><span class="op">(</span><span class="nam">staleage</span><span class="op">)</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">133&#x202F;&#x219B;&#x202F;139</span><span class="annotate long">line 133 didn't jump to line 139, because the condition on line 133 was never false</span></span></p>
+    <p id="t134" class="run"><span class="n"><a href="#t134">134</a></span><span class="t">                    <span class="key">return</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
     <p id="t135" class="mis show_mis"><span class="n"><a href="#t135">135</a></span><span class="t">            <span class="key">except</span> <span class="nam">ValueError</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t136" class="mis show_mis"><span class="n"><a href="#t136">136</a></span><span class="t">                <span class="key">pass</span>&nbsp;</span><span class="r"></span></p>
     <p id="t137" class="pln"><span class="n"><a href="#t137">137</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -430,7 +430,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
-            created at 2021-02-18 12:27 +0100
+            created at 2021-02-23 12:32 +0100
         </p>
     </div>
 </div>

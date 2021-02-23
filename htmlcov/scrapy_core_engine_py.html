@@ -22,8 +22,8 @@
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            229 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">216 run</button>
+            232 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">219 run</button>
             <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">13 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
             <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">16 partial</button>
@@ -126,7 +126,7 @@
     <p id="t71" class="run"><span class="n"><a href="#t71">71</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_spider_closed_callback</span> <span class="op">=</span> <span class="nam">spider_closed_callback</span>&nbsp;</span><span class="r"></span></p>
     <p id="t72" class="pln"><span class="n"><a href="#t72">72</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t73" class="run"><span class="n"><a href="#t73">73</a></span><span class="t">    <span class="op">@</span><span class="nam">defer</span><span class="op">.</span><span class="nam">inlineCallbacks</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t74" class="pln"><span class="n"><a href="#t74">74</a></span><span class="t">    <span class="key">def</span> <span class="nam">start</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t74" class="run"><span class="n"><a href="#t74">74</a></span><span class="t">    <span class="key">def</span> <span class="nam">start</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t75" class="pln"><span class="n"><a href="#t75">75</a></span><span class="t">        <span class="str">"""Start the execution engine"""</span>&nbsp;</span><span class="r"></span></p>
     <p id="t76" class="par run show_par"><span class="n"><a href="#t76">76</a></span><span class="t">        <span class="key">if</span> <span class="nam">self</span><span class="op">.</span><span class="nam">running</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">76&#x202F;&#x219B;&#x202F;77</span><span class="annotate long">line 76 didn't jump to line 77, because the condition on line 76 was never true</span></span></p>
     <p id="t77" class="mis show_mis"><span class="n"><a href="#t77">77</a></span><span class="t">            <span class="key">raise</span> <span class="nam">RuntimeError</span><span class="op">(</span><span class="str">"Engine already running"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -260,7 +260,7 @@
     <p id="t205" class="run"><span class="n"><a href="#t205">205</a></span><span class="t">        <span class="key">return</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
     <p id="t206" class="pln"><span class="n"><a href="#t206">206</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t207" class="run"><span class="n"><a href="#t207">207</a></span><span class="t">    <span class="op">@</span><span class="nam">property</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t208" class="pln"><span class="n"><a href="#t208">208</a></span><span class="t">    <span class="key">def</span> <span class="nam">open_spiders</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t208" class="run"><span class="n"><a href="#t208">208</a></span><span class="t">    <span class="key">def</span> <span class="nam">open_spiders</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t209" class="run"><span class="n"><a href="#t209">209</a></span><span class="t">        <span class="key">return</span> <span class="op">[</span><span class="nam">self</span><span class="op">.</span><span class="nam">spider</span><span class="op">]</span> <span class="key">if</span> <span class="nam">self</span><span class="op">.</span><span class="nam">spider</span> <span class="key">else</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p id="t210" class="pln"><span class="n"><a href="#t210">210</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t211" class="run"><span class="n"><a href="#t211">211</a></span><span class="t">    <span class="key">def</span> <span class="nam">has_capacity</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -410,7 +410,7 @@
     <p id="t355" class="run"><span class="n"><a href="#t355">355</a></span><span class="t">        <span class="key">return</span> <span class="nam">dlist</span>&nbsp;</span><span class="r"></span></p>
     <p id="t356" class="pln"><span class="n"><a href="#t356">356</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t357" class="run"><span class="n"><a href="#t357">357</a></span><span class="t">    <span class="op">@</span><span class="nam">defer</span><span class="op">.</span><span class="nam">inlineCallbacks</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t358" class="pln"><span class="n"><a href="#t358">358</a></span><span class="t">    <span class="key">def</span> <span class="nam">_finish_stopping_engine</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t358" class="run"><span class="n"><a href="#t358">358</a></span><span class="t">    <span class="key">def</span> <span class="nam">_finish_stopping_engine</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t359" class="run"><span class="n"><a href="#t359">359</a></span><span class="t">        <span class="key">yield</span> <span class="nam">self</span><span class="op">.</span><span class="nam">signals</span><span class="op">.</span><span class="nam">send_catch_log_deferred</span><span class="op">(</span><span class="nam">signal</span><span class="op">=</span><span class="nam">signals</span><span class="op">.</span><span class="nam">engine_stopped</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t360" class="run"><span class="n"><a href="#t360">360</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">_closewait</span><span class="op">.</span><span class="nam">callback</span><span class="op">(</span><span class="key">None</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </div>
@@ -418,7 +418,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
-            created at 2021-02-18 12:27 +0100
+            created at 2021-02-23 12:32 +0100
         </p>
     </div>
 </div>

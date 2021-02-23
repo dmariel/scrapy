@@ -170,7 +170,7 @@
     <p id="t115" class="pln"><span class="n"><a href="#t115">115</a></span><span class="t"><span class="str">    iterating it.</span>&nbsp;</span><span class="r"></span></p>
     <p id="t116" class="pln"><span class="n"><a href="#t116">116</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p id="t117" class="run"><span class="n"><a href="#t117">117</a></span><span class="t">    <span class="nam">it</span> <span class="op">=</span> <span class="nam">iter</span><span class="op">(</span><span class="nam">iterable</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t118" class="run"><span class="n"><a href="#t118">118</a></span><span class="t">    <span class="key">while</span> <span class="key">True</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t118" class="pln"><span class="n"><a href="#t118">118</a></span><span class="t">    <span class="key">while</span> <span class="key">True</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t119" class="run"><span class="n"><a href="#t119">119</a></span><span class="t">        <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t120" class="run"><span class="n"><a href="#t120">120</a></span><span class="t">            <span class="key">yield</span> <span class="nam">next</span><span class="op">(</span><span class="nam">it</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t121" class="run"><span class="n"><a href="#t121">121</a></span><span class="t">        <span class="key">except</span> <span class="nam">StopIteration</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -201,7 +201,7 @@
     <p id="t146" class="pln"><span class="n"><a href="#t146">146</a></span><span class="t"><span class="str">    This is useful for callback chains, as callback functions are called with the previous callback result.</span>&nbsp;</span><span class="r"></span></p>
     <p id="t147" class="pln"><span class="n"><a href="#t147">147</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p id="t148" class="run"><span class="n"><a href="#t148">148</a></span><span class="t">    <span class="op">@</span><span class="nam">wraps</span><span class="op">(</span><span class="nam">coro_f</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t149" class="pln"><span class="n"><a href="#t149">149</a></span><span class="t">    <span class="key">def</span> <span class="nam">f</span><span class="op">(</span><span class="op">*</span><span class="nam">coro_args</span><span class="op">,</span> <span class="op">**</span><span class="nam">coro_kwargs</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t149" class="run"><span class="n"><a href="#t149">149</a></span><span class="t">    <span class="key">def</span> <span class="nam">f</span><span class="op">(</span><span class="op">*</span><span class="nam">coro_args</span><span class="op">,</span> <span class="op">**</span><span class="nam">coro_kwargs</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t150" class="run"><span class="n"><a href="#t150">150</a></span><span class="t">        <span class="key">return</span> <span class="nam">deferred_from_coro</span><span class="op">(</span><span class="nam">coro_f</span><span class="op">(</span><span class="op">*</span><span class="nam">coro_args</span><span class="op">,</span> <span class="op">**</span><span class="nam">coro_kwargs</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t151" class="run"><span class="n"><a href="#t151">151</a></span><span class="t">    <span class="key">return</span> <span class="nam">f</span>&nbsp;</span><span class="r"></span></p>
     <p id="t152" class="pln"><span class="n"><a href="#t152">152</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -226,7 +226,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
-            created at 2021-02-18 12:27 +0100
+            created at 2021-02-23 12:32 +0100
         </p>
     </div>
 </div>

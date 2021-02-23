@@ -22,8 +22,8 @@
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            119 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">119 run</button>
+            124 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">124 run</button>
             <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">0 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
             <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">0 partial</button>
@@ -113,7 +113,7 @@
     <p id="t58" class="run"><span class="n"><a href="#t58">58</a></span><span class="t">        <span class="key">return</span> <span class="nam">Response</span><span class="op">.</span><span class="nam">replace</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="op">*</span><span class="nam">args</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t59" class="pln"><span class="n"><a href="#t59">59</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t60" class="run"><span class="n"><a href="#t60">60</a></span><span class="t">    <span class="op">@</span><span class="nam">property</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t61" class="pln"><span class="n"><a href="#t61">61</a></span><span class="t">    <span class="key">def</span> <span class="nam">encoding</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t61" class="run"><span class="n"><a href="#t61">61</a></span><span class="t">    <span class="key">def</span> <span class="nam">encoding</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t62" class="run"><span class="n"><a href="#t62">62</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_declared_encoding</span><span class="op">(</span><span class="op">)</span> <span class="key">or</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_body_inferred_encoding</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t63" class="pln"><span class="n"><a href="#t63">63</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t64" class="run"><span class="n"><a href="#t64">64</a></span><span class="t">    <span class="key">def</span> <span class="nam">_declared_encoding</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -141,7 +141,7 @@
     <p id="t86" class="run"><span class="n"><a href="#t86">86</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_cached_decoded_json</span>&nbsp;</span><span class="r"></span></p>
     <p id="t87" class="pln"><span class="n"><a href="#t87">87</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t88" class="run"><span class="n"><a href="#t88">88</a></span><span class="t">    <span class="op">@</span><span class="nam">property</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t89" class="pln"><span class="n"><a href="#t89">89</a></span><span class="t">    <span class="key">def</span> <span class="nam">text</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t89" class="run"><span class="n"><a href="#t89">89</a></span><span class="t">    <span class="key">def</span> <span class="nam">text</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t90" class="pln"><span class="n"><a href="#t90">90</a></span><span class="t">        <span class="str">""" Body as unicode """</span>&nbsp;</span><span class="r"></span></p>
     <p id="t91" class="pln"><span class="n"><a href="#t91">91</a></span><span class="t">        <span class="com"># access self.encoding before _cached_ubody to make sure</span>&nbsp;</span><span class="r"></span></p>
     <p id="t92" class="pln"><span class="n"><a href="#t92">92</a></span><span class="t">        <span class="com"># _body_inferred_encoding is called</span>&nbsp;</span><span class="r"></span></p>
@@ -157,7 +157,7 @@
     <p id="t102" class="run"><span class="n"><a href="#t102">102</a></span><span class="t">        <span class="key">return</span> <span class="nam">urljoin</span><span class="op">(</span><span class="nam">get_base_url</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">,</span> <span class="nam">url</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t103" class="pln"><span class="n"><a href="#t103">103</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t104" class="run"><span class="n"><a href="#t104">104</a></span><span class="t">    <span class="op">@</span><span class="nam">memoizemethod_noargs</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t105" class="pln"><span class="n"><a href="#t105">105</a></span><span class="t">    <span class="key">def</span> <span class="nam">_headers_encoding</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t105" class="run"><span class="n"><a href="#t105">105</a></span><span class="t">    <span class="key">def</span> <span class="nam">_headers_encoding</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t106" class="run"><span class="n"><a href="#t106">106</a></span><span class="t">        <span class="nam">content_type</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">headers</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">b'Content-Type'</span><span class="op">,</span> <span class="str">b''</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t107" class="run"><span class="n"><a href="#t107">107</a></span><span class="t">        <span class="key">return</span> <span class="nam">http_content_type_encoding</span><span class="op">(</span><span class="nam">to_unicode</span><span class="op">(</span><span class="nam">content_type</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t108" class="pln"><span class="n"><a href="#t108">108</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -180,11 +180,11 @@
     <p id="t125" class="run"><span class="n"><a href="#t125">125</a></span><span class="t">            <span class="key">return</span> <span class="nam">resolve_encoding</span><span class="op">(</span><span class="nam">enc</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t126" class="pln"><span class="n"><a href="#t126">126</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t127" class="run"><span class="n"><a href="#t127">127</a></span><span class="t">    <span class="op">@</span><span class="nam">memoizemethod_noargs</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t128" class="pln"><span class="n"><a href="#t128">128</a></span><span class="t">    <span class="key">def</span> <span class="nam">_body_declared_encoding</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t128" class="run"><span class="n"><a href="#t128">128</a></span><span class="t">    <span class="key">def</span> <span class="nam">_body_declared_encoding</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t129" class="run"><span class="n"><a href="#t129">129</a></span><span class="t">        <span class="key">return</span> <span class="nam">html_body_declared_encoding</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">body</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t130" class="pln"><span class="n"><a href="#t130">130</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t131" class="run"><span class="n"><a href="#t131">131</a></span><span class="t">    <span class="op">@</span><span class="nam">property</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t132" class="pln"><span class="n"><a href="#t132">132</a></span><span class="t">    <span class="key">def</span> <span class="nam">selector</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t132" class="run"><span class="n"><a href="#t132">132</a></span><span class="t">    <span class="key">def</span> <span class="nam">selector</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t133" class="run"><span class="n"><a href="#t133">133</a></span><span class="t">        <span class="key">from</span> <span class="nam">scrapy</span><span class="op">.</span><span class="nam">selector</span> <span class="key">import</span> <span class="nam">Selector</span>&nbsp;</span><span class="r"></span></p>
     <p id="t134" class="run"><span class="n"><a href="#t134">134</a></span><span class="t">        <span class="key">if</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_cached_selector</span> <span class="key">is</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t135" class="run"><span class="n"><a href="#t135">135</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">_cached_selector</span> <span class="op">=</span> <span class="nam">Selector</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -323,7 +323,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
-            created at 2021-02-18 12:27 +0100
+            created at 2021-02-23 12:32 +0100
         </p>
     </div>
 </div>

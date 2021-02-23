@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for scrapy/http/cookies.py: 93%</title>
+    <title>Coverage for scrapy/http/cookies.py: 94%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
@@ -18,15 +18,15 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>scrapy/http/cookies.py</b> :
-            <span class="pc_cov">93%</span>
+            <span class="pc_cov">94%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            111 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">103 run</button>
-            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">8 missing</button>
+            117 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">110 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">7 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
-            <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">2 partial</button>
+            <button type="button" class="par run show_par shortkey_p button_toggle_par" title="Toggle lines partially run">1 partial</button>
         </h2>
     </div>
 </div>
@@ -101,12 +101,12 @@
     <p id="t46" class="run"><span class="n"><a href="#t46">46</a></span><span class="t">                <span class="nam">wreq</span><span class="op">.</span><span class="nam">add_unredirected_header</span><span class="op">(</span><span class="str">"Cookie"</span><span class="op">,</span> <span class="str">"; "</span><span class="op">.</span><span class="nam">join</span><span class="op">(</span><span class="nam">attrs</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t47" class="pln"><span class="n"><a href="#t47">47</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t48" class="run"><span class="n"><a href="#t48">48</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">processed</span> <span class="op">+=</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t49" class="par run show_par"><span class="n"><a href="#t49">49</a></span><span class="t">        <span class="key">if</span> <span class="nam">self</span><span class="op">.</span><span class="nam">processed</span> <span class="op">%</span> <span class="nam">self</span><span class="op">.</span><span class="nam">check_expired_frequency</span> <span class="op">==</span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">49&#x202F;&#x219B;&#x202F;51</span><span class="annotate long">line 49 didn't jump to line 51, because the condition on line 49 was never true</span></span></p>
+    <p id="t49" class="run"><span class="n"><a href="#t49">49</a></span><span class="t">        <span class="key">if</span> <span class="nam">self</span><span class="op">.</span><span class="nam">processed</span> <span class="op">%</span> <span class="nam">self</span><span class="op">.</span><span class="nam">check_expired_frequency</span> <span class="op">==</span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t50" class="pln"><span class="n"><a href="#t50">50</a></span><span class="t">            <span class="com"># This is still quite inefficient for large number of cookies</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t51" class="mis show_mis"><span class="n"><a href="#t51">51</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">jar</span><span class="op">.</span><span class="nam">clear_expired_cookies</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t51" class="run"><span class="n"><a href="#t51">51</a></span><span class="t">            <span class="nam">self</span><span class="op">.</span><span class="nam">jar</span><span class="op">.</span><span class="nam">clear_expired_cookies</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t52" class="pln"><span class="n"><a href="#t52">52</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t53" class="run"><span class="n"><a href="#t53">53</a></span><span class="t">    <span class="op">@</span><span class="nam">property</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t54" class="pln"><span class="n"><a href="#t54">54</a></span><span class="t">    <span class="key">def</span> <span class="nam">_cookies</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t54" class="run"><span class="n"><a href="#t54">54</a></span><span class="t">    <span class="key">def</span> <span class="nam">_cookies</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t55" class="mis show_mis"><span class="n"><a href="#t55">55</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">jar</span><span class="op">.</span><span class="nam">_cookies</span>&nbsp;</span><span class="r"></span></p>
     <p id="t56" class="pln"><span class="n"><a href="#t56">56</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t57" class="run"><span class="n"><a href="#t57">57</a></span><span class="t">    <span class="key">def</span> <span class="nam">clear_session_cookies</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="op">*</span><span class="nam">args</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -196,23 +196,23 @@
     <p id="t141" class="pln"><span class="n"><a href="#t141">141</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t142" class="pln"><span class="n"><a href="#t142">142</a></span><span class="t">    <span class="com"># python3 uses attributes instead of methods</span>&nbsp;</span><span class="r"></span></p>
     <p id="t143" class="run"><span class="n"><a href="#t143">143</a></span><span class="t">    <span class="op">@</span><span class="nam">property</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t144" class="pln"><span class="n"><a href="#t144">144</a></span><span class="t">    <span class="key">def</span> <span class="nam">full_url</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t144" class="run"><span class="n"><a href="#t144">144</a></span><span class="t">    <span class="key">def</span> <span class="nam">full_url</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t145" class="run"><span class="n"><a href="#t145">145</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">get_full_url</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t146" class="pln"><span class="n"><a href="#t146">146</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t147" class="run"><span class="n"><a href="#t147">147</a></span><span class="t">    <span class="op">@</span><span class="nam">property</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t148" class="pln"><span class="n"><a href="#t148">148</a></span><span class="t">    <span class="key">def</span> <span class="nam">host</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t148" class="run"><span class="n"><a href="#t148">148</a></span><span class="t">    <span class="key">def</span> <span class="nam">host</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t149" class="run"><span class="n"><a href="#t149">149</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">get_host</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t150" class="pln"><span class="n"><a href="#t150">150</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t151" class="run"><span class="n"><a href="#t151">151</a></span><span class="t">    <span class="op">@</span><span class="nam">property</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t152" class="pln"><span class="n"><a href="#t152">152</a></span><span class="t">    <span class="key">def</span> <span class="nam">type</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t152" class="run"><span class="n"><a href="#t152">152</a></span><span class="t">    <span class="key">def</span> <span class="nam">type</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t153" class="run"><span class="n"><a href="#t153">153</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">get_type</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t154" class="pln"><span class="n"><a href="#t154">154</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t155" class="run"><span class="n"><a href="#t155">155</a></span><span class="t">    <span class="op">@</span><span class="nam">property</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t156" class="pln"><span class="n"><a href="#t156">156</a></span><span class="t">    <span class="key">def</span> <span class="nam">unverifiable</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t156" class="run"><span class="n"><a href="#t156">156</a></span><span class="t">    <span class="key">def</span> <span class="nam">unverifiable</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t157" class="run"><span class="n"><a href="#t157">157</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">is_unverifiable</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t158" class="pln"><span class="n"><a href="#t158">158</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t159" class="run"><span class="n"><a href="#t159">159</a></span><span class="t">    <span class="op">@</span><span class="nam">property</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t160" class="pln"><span class="n"><a href="#t160">160</a></span><span class="t">    <span class="key">def</span> <span class="nam">origin_req_host</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t160" class="run"><span class="n"><a href="#t160">160</a></span><span class="t">    <span class="key">def</span> <span class="nam">origin_req_host</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t161" class="run"><span class="n"><a href="#t161">161</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">get_origin_req_host</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t162" class="pln"><span class="n"><a href="#t162">162</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t163" class="run"><span class="n"><a href="#t163">163</a></span><span class="t">    <span class="key">def</span> <span class="nam">has_header</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">name</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -249,7 +249,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.4</a>,
-            created at 2021-02-18 12:27 +0100
+            created at 2021-02-23 12:32 +0100
         </p>
     </div>
 </div>
