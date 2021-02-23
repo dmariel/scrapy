@@ -85,4 +85,4 @@ class JsonEncoderTestCase(unittest.TestCase):
 
     def test_encode_none_raises_type_error(self):
         with self.assertRaises(TypeError):
-        self.encoder.encode(None) 
+            self.encoder.encode(None) 
