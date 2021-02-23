@@ -14,7 +14,6 @@ from urllib.parse import ParseResult, urldefrag, urlparse, urlunparse
 from w3lib.url import *
 from w3lib.url import _safe_chars, _unquotepath  # noqa: F401
 from scrapy.utils.python import to_unicode
-from scrapy.utils.tracer import Tracer
 
 
 def url_is_from_any_domain(url, domains):
@@ -146,62 +145,20 @@ def strip_url(url, strip_credentials=True, strip_default_port=True, origin_only=
     - ``strip_fragment`` drops any #fragment component
     """
 
-    tracer = Tracer()
-
-    tracer.visited(1)
-
     parsed_url = urlparse(url)
     netloc = parsed_url.netloc
     if (strip_credentials or origin_only) and (parsed_url.username or parsed_url.password):
-        tracer.visited(2)
         netloc = netloc.split('@')[-1]
-    else:
-        tracer.visited(3)
-
     if strip_default_port and parsed_url.port:
-        tracer.visited(4)
         if (parsed_url.scheme, parsed_url.port) in (('http', 80),
                                                     ('https', 443),
                                                     ('ftp', 21)):
-            tracer.visited(5)
             netloc = netloc.replace(f':{parsed_url.port}', '')
-        else:
-            tracer.visited(6)
-    else:
-        tracer.visited(7)
-
-    tracer.visited(8)
-
-    component_1 = None
-    component_2 = None
-    component_3 = None
-    component_4 = None
-
-    if origin_only:
-        tracer.visited(9)
-        component_1 = '/'
-        component_2 = ''
-        component_3 = ''
-    else:
-        tracer.visited(10)
-        component_1 = parsed_url.path
-        component_2 = parsed_url.params
-        component_3 = parsed_url.query
-
-    if strip_fragment:
-        tracer.visited(11)
-        component_4 = ''
-    else:
-        tracer.visited(12)
-        component_4 = parsed_url.fragment
-
-
-    tracer.visited(13)
     return urlunparse((
         parsed_url.scheme,
         netloc,
-        component_1,
-        component_2,
-        component_3,
-        component_4,
+        '/' if origin_only else parsed_url.path,
+        '' if origin_only else parsed_url.params,
+        '' if origin_only else parsed_url.query,
+        '' if strip_fragment else parsed_url.fragment
     ))

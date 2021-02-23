@@ -14,8 +14,6 @@ from itertools import chain
 from scrapy.exceptions import ScrapyDeprecationWarning
 from scrapy.utils.decorators import deprecated
 
-from scrapy.utils.tracer import Tracer
-
 
 def flatten(x):
     """flatten(sequence) -> list
@@ -199,47 +197,29 @@ def _getargspec_py23(func):
 
 def get_func_args(func, stripself=False):
     """Return the argument name list of a callable"""
-
-    tracer = Tracer()
-    tracer.visited(1)
-
     if inspect.isfunction(func):
-        tracer.visited(2)
         spec = inspect.getfullargspec(func)
         func_args = spec.args + spec.kwonlyargs
     elif inspect.isclass(func):
-        tracer.visited(3)
         return get_func_args(func.__init__, True)
     elif inspect.ismethod(func):
-        tracer.visited(4)
         return get_func_args(func.__func__, True)
     elif inspect.ismethoddescriptor(func):
-        tracer.visited(5)
         return []
     elif isinstance(func, partial):
-        tracer.visited(6)
         return [x for x in get_func_args(func.func)[len(func.args):]
                 if not (func.keywords and x in func.keywords)]
     elif hasattr(func, '__call__'):
-        tracer.visited(7)
         if inspect.isroutine(func):
-            tracer.visited(8)
             return []
         elif getattr(func, '__name__', None) == '__call__':
-            tracer.visited(9)
             return []
         else:
-            tracer.visited(10)
             return get_func_args(func.__call__, True)
     else:
-        tracer.visited(11)
         raise TypeError(f'{type(func)} is not callable')
     if stripself:
-        tracer.visited(12)
         func_args.pop(0)
-
-    tracer.visited(13)
-
     return func_args
 
 

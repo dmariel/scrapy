@@ -17,7 +17,6 @@ from scrapy.utils.misc import arg_to_iter
 from scrapy.utils.url import (
     url_is_from_any_domain, url_has_any_extension,
 )
-from scrapy.utils.tracer import Tracer
 
 
 # common file extensions that are not followed if they occur in links
@@ -93,52 +92,21 @@ class FilteringLinkExtractor:
                               for x in arg_to_iter(restrict_text)]
 
     def _link_allowed(self, link):
-        tracer = Tracer()
-        if not _is_valid_url(link.url): # Missing test
-            tracer.visited(1)
+        if not _is_valid_url(link.url):
             return False
-        else:
-            tracer.visited(2)
-
         if self.allow_res and not _matches(link.url, self.allow_res):
-            tracer.visited(3)
             return False
-        else:
-            tracer.visited(4)
-
         if self.deny_res and _matches(link.url, self.deny_res):
-            tracer.visited(5)
             return False
-        else:
-            tracer.visited(6)
-
         parsed_url = urlparse(link.url)
         if self.allow_domains and not url_is_from_any_domain(parsed_url, self.allow_domains):
-            tracer.visited(7)
             return False
-        else:
-            tracer.visited(8)
-
         if self.deny_domains and url_is_from_any_domain(parsed_url, self.deny_domains):
-            tracer.visited(9)
             return False
-        else:
-            tracer.visited(10)
-
         if self.deny_extensions and url_has_any_extension(parsed_url, self.deny_extensions):
-            tracer.visited(11)
             return False
-        else:
-            tracer.visited(12)
-
         if self.restrict_text and not _matches(link.text, self.restrict_text):
-            tracer.visited(13)
             return False
-        else:
-            tracer.visited(14)
-
-        tracer.visited(15)
-
         return True
 
     def matches(self, url):
