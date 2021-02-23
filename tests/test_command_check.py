@@ -95,3 +95,10 @@ class CheckSpider(scrapy.Spider):
             raise Exception('SCRAPY_CHECK not set')
         """
         self._test_contract(parse_def=parse_def)
+
+    def test_check_run_list_branches(self, contracts='', parse_def='pass'):
+        args = [f'--list']
+        self._write_contract(contracts, parse_def)
+        p, out, err = self.proc('check', *args)
+        self.assertNotIn('F', out)
+        self.assertEqual(p.returncode, 0)
