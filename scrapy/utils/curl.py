@@ -33,6 +33,44 @@ safe_to_ignore_arguments = [
 for argument in safe_to_ignore_arguments:
     curl_parser.add_argument(*argument, action='store_true')
 
+def extract_headers_cookies(parsed_args):
+    headers = []
+    cookies = {}
+    for header in parsed_args.headers or ():
+        name, val = header.split(':', 1)
+        name = name.strip()
+        val = val.strip()
+        if name.title() == 'Cookie':
+            for name, morsel in SimpleCookie(val).items():
+                cookies[name] = morsel.value
+        else:
+            headers.append((name, val))
+    
+    if parsed_args.auth:
+        user, password = parsed_args.auth.split(':', 1)
+        headers.append(('Authorization', basic_auth_header(user, password)))
+
+    return headers, cookies
+
+def create_kwargs(parsed_args, url):
+    method = parsed_args.method or 'GET'
+
+    result = {'method': method.upper(), 'url': url}
+
+    headers, cookies = extract_headers_cookies(parsed_args)
+
+    if headers:
+        result['headers'] = headers
+    if cookies:
+        result['cookies'] = cookies
+    if parsed_args.data:
+        result['body'] = parsed_args.data
+        if not parsed_args.method:
+            # if the "data" is specified but the "method" is not specified,
+            # the default method is 'POST'
+            result['method'] = 'POST'
+
+    return result
 
 def curl_to_request_kwargs(curl_command, ignore_unknown_options=True):
     """Convert a cURL command syntax to Request kwargs.
@@ -66,35 +104,4 @@ def curl_to_request_kwargs(curl_command, ignore_unknown_options=True):
     if not parsed_url.scheme:
         url = 'http://' + url
 
-    method = parsed_args.method or 'GET'
-
-    result = {'method': method.upper(), 'url': url}
-
-    headers = []
-    cookies = {}
-    for header in parsed_args.headers or ():
-        name, val = header.split(':', 1)
-        name = name.strip()
-        val = val.strip()
-        if name.title() == 'Cookie':
-            for name, morsel in SimpleCookie(val).items():
-                cookies[name] = morsel.value
-        else:
-            headers.append((name, val))
-
-    if parsed_args.auth:
-        user, password = parsed_args.auth.split(':', 1)
-        headers.append(('Authorization', basic_auth_header(user, password)))
-
-    if headers:
-        result['headers'] = headers
-    if cookies:
-        result['cookies'] = cookies
-    if parsed_args.data:
-        result['body'] = parsed_args.data
-        if not parsed_args.method:
-            # if the "data" is specified but the "method" is not specified,
-            # the default method is 'POST'
-            result['method'] = 'POST'
-
-    return result
+    return create_kwargs(parsed_args, url)
