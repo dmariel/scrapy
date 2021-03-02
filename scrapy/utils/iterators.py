@@ -53,12 +53,27 @@ def xmliter(obj, nodename):
         yield Selector(text=nodetext, type='xml')
 
 
+def _replace_all(obj, old, new):
+    if isinstance(obj, Response):
+        return obj.text.replace(old, new)
+    elif isinstance(obj, str):
+        return obj.replace(old, new)
+    elif isinstance(obj, bytes):
+        return str(obj).replace(old, new)
+    return obj
+
+
 def xmliter_lxml(obj, nodename, namespace=None, prefix='x'):
     from lxml import etree
-    reader = _StreamReader(obj)
-    tag = f'{{{namespace}}}{nodename}' if namespace else nodename
+    nodename_sanitized = nodename
+    obj_sanitized = obj
+    if nodename.find(":") > 0:
+        nodename_sanitized =  nodename.replace(":", "-")
+        obj_sanitized =  _replace_all(obj, nodename, nodename_sanitized)
+    reader = _StreamReader(obj_sanitized)
+    tag = f'{{{namespace}}}{nodename_sanitized}' if namespace else nodename_sanitized
     iterable = etree.iterparse(reader, tag=tag, encoding=reader.encoding)
-    selxpath = '//' + (f'{prefix}:{nodename}' if namespace else nodename)
+    selxpath = '//' + (f'{prefix}:{nodename_sanitized}' if namespace else nodename_sanitized)
     for _, node in iterable:
         nodetext = etree.tostring(node, encoding='unicode')
         node.clear()
