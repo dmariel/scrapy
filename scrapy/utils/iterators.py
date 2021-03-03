@@ -59,7 +59,7 @@ def _replace_all(obj, old, new):
     elif isinstance(obj, str):
         return obj.replace(old, new)
     elif isinstance(obj, bytes):
-        return str(obj).replace(old, new)
+        return obj.decode().replace(old, new).encode()
     return obj
 
 
