@@ -3,7 +3,7 @@ import os
 from pytest import mark
 from twisted.trial import unittest
 
-from scrapy.utils.iterators import csviter, xmliter, _body_or_str, xmliter_lxml
+from scrapy.utils.iterators import csviter, xmliter, _body_or_str, xmliter_lxml, _replace_all
 from scrapy.http import XmlResponse, TextResponse, Response
 from tests import get_testdata
 
@@ -464,6 +464,14 @@ class TestHelper(unittest.TestCase):
         self.assertTrue(type(a) is type(b),
                         f'Got {type(a)}, expected {type(b)} for { obj!r}')
         self.assertEqual(a, b)
+
+    def test_replace_all(self):
+        response = XmlResponse(url='http://mydummycompany.com', body=self.bbody)
+        response_after = XmlResponse(url='http://mydummycompany.com', body=b'utf8_body')
+
+        self.assertEqual(_replace_all(response,'-', '_').text, response_after.text)
+        self.assertEqual(_replace_all("utf8-body", '-', '_'), "utf8_body")
+        self.assertEqual(_replace_all(b'utf8-body', '-', '_'), b'utf8_body')
 
 
 if __name__ == "__main__":
