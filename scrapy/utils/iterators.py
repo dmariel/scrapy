@@ -55,7 +55,7 @@ def xmliter(obj, nodename):
 
 def _replace_all(obj, old, new):
     if isinstance(obj, Response):
-        return obj.text.replace(old, new)
+        return obj.replace(body=obj.text.replace(old, new))
     elif isinstance(obj, str):
         return obj.replace(old, new)
     elif isinstance(obj, bytes):
