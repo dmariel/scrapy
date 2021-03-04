@@ -1,9 +1,8 @@
 import os
 
-from pytest import mark
 from twisted.trial import unittest
 
-from scrapy.utils.iterators import csviter, xmliter, _body_or_str, xmliter_lxml
+from scrapy.utils.iterators import csviter, xmliter, _body_or_str, xmliter_lxml, TagReplacer
 from scrapy.http import XmlResponse, TextResponse, Response
 from tests import get_testdata
 
@@ -175,6 +174,54 @@ class XmliterTestCase(unittest.TestCase):
         node.register_namespace('g', 'http://base.google.com/ns/1.0')
         self.assertEqual(node.xpath('text()').extract(), ['http://www.mydummycompany.com/images/item1.jpg'])
 
+    def test_xmliter_namespaced_nodename_bytes(self):
+        response = b"""
+            <?xml version="1.0" encoding="UTF-8"?>
+            <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+                <channel>
+                <title>My Dummy Company</title>
+                <link>http://www.mydummycompany.com</link>
+                <description>This is a dummy company. We do nothing.</description>
+                <item>
+                    <title>Item 1</title>
+                    <description>This is item 1</description>
+                    <link>http://www.mydummycompany.com/items/1</link>
+                    <g:image_link>http://www.mydummycompany.com/images/item1.jpg</g:image_link>
+                    <g:id>ITEM_1</g:id>
+                    <g:price>400</g:price>
+                </item>
+                </channel>
+            </rss>
+        """
+        my_iter = self.xmliter(response, 'g:image_link')
+        node = next(my_iter)
+        node.register_namespace('g', 'http://base.google.com/ns/1.0')
+        self.assertEqual(node.xpath('text()').extract(), ['http://www.mydummycompany.com/images/item1.jpg'])
+
+    def test_xmliter_namespaced_nodename_str(self):
+        response = """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+                <channel>
+                <title>My Dummy Company</title>
+                <link>http://www.mydummycompany.com</link>
+                <description>This is a dummy company. We do nothing.</description>
+                <item>
+                    <title>Item 1</title>
+                    <description>This is item 1</description>
+                    <link>http://www.mydummycompany.com/items/1</link>
+                    <g:image_link>http://www.mydummycompany.com/images/item1.jpg</g:image_link>
+                    <g:id>ITEM_1</g:id>
+                    <g:price>400</g:price>
+                </item>
+                </channel>
+            </rss>
+        """
+        my_iter = self.xmliter(response, 'g:image_link')
+        node = next(my_iter)
+        node.register_namespace('g', 'http://base.google.com/ns/1.0')
+        self.assertEqual(node.xpath('text()').extract(), ['http://www.mydummycompany.com/images/item1.jpg'])
+
     def test_xmliter_namespaced_nodename_missing(self):
         body = b"""
             <?xml version="1.0" encoding="UTF-8"?>
@@ -232,7 +279,6 @@ class XmliterTestCase(unittest.TestCase):
 class LxmlXmliterTestCase(XmliterTestCase):
     xmliter = staticmethod(xmliter_lxml)
 
-    @mark.xfail(reason='known bug of the current implementation')
     def test_xmliter_namespaced_nodename(self):
         super().test_xmliter_namespaced_nodename()
 
@@ -464,6 +510,111 @@ class TestHelper(unittest.TestCase):
         self.assertTrue(type(a) is type(b),
                         f'Got {type(a)}, expected {type(b)} for { obj!r}')
         self.assertEqual(a, b)
+
+
+class TestTagReplacer(unittest.TestCase):
+
+    def test_replace_str(self):
+        tag_replacer = TagReplacer()
+        old_str = "<foo>foo</foo>"
+        new_str = tag_replacer.replace(old_str, "foo", "bar")
+
+        self.assertEqual(new_str, "<bar>foo</bar>")
+
+    def test_replace_bytes(self):
+        tag_replacer = TagReplacer()
+        old_bytes = b"<foo>foo</foo>"
+        new_bytes = tag_replacer.replace(old_bytes, "foo", "bar")
+
+        self.assertEqual(new_bytes, b"<bar>foo</bar>")
+
+    def test_replace_response(self):
+        tag_replacer = TagReplacer()
+        body = b"<foo>foo</foo>"
+        old_response = XmlResponse(url='http://mydummycompany.com', body=body)
+        new_response = tag_replacer.replace(old_response, "foo", "bar")
+
+        self.assertEqual(new_response.text, "<bar>foo</bar>")
+
+    def test_replace_response_invalid_type(self):
+        tag_replacer = TagReplacer()
+
+        with self.assertRaises(TypeError):
+            tag_replacer.replace(1, "foo", "bar")
+
+        with self.assertRaises(TypeError):
+            tag_replacer.replace([], "foo", "bar")
+
+        with self.assertRaises(TypeError):
+            tag_replacer.replace({}, "foo", "bar")
+
+        with self.assertRaises(TypeError):
+            tag_replacer.replace(None, "foo", "bar")
+
+    def test_replace_with_invalid_tagnames(self):
+        tag_replacer = TagReplacer()
+
+        with self.assertRaises(ValueError):
+            tag_replacer.replace("foo", "", "bar")
+
+        with self.assertRaises(ValueError):
+            tag_replacer.replace("foo", "fo b", "bar")
+
+        with self.assertRaises(ValueError):
+            tag_replacer.replace("foo", "fob", "b ar")
+
+        with self.assertRaises(ValueError):
+            tag_replacer.replace("foo", None, "bar")
+
+        with self.assertRaises(ValueError):
+            tag_replacer.replace("foo", 1, "b ar")
+
+    def test_replace_should_not_replace_text_nodes(self):
+        tag_replacer = TagReplacer()
+        old_text = "<foo> bar </foo>"
+        new_text = tag_replacer.replace(old_text, "bar", "foo")
+
+        self.assertEqual(old_text, new_text)
+
+    def test_replace_should_not_replace_attribute_keys(self):
+        tag_replacer = TagReplacer()
+        old_text = '<foo bar="foo"> foo </foo>'
+        new_text = tag_replacer.replace(old_text, "bar", "foo")
+
+        self.assertEqual(old_text, new_text)
+
+    def test_replace_should_not_replace_attribute_values(self):
+        tag_replacer = TagReplacer()
+        old_text = '<foo foo="bar"> foo </foo>'
+        new_text = tag_replacer.replace(old_text, "bar", "foo")
+
+        self.assertEqual(old_text, new_text)
+
+    def test_replace_with_multiple_attributes(self):
+        tag_replacer = TagReplacer()
+        old_text = '<foo foo="bar" baz="qux"> foo </foo>'
+        new_text = tag_replacer.replace(old_text, "foo", "bar")
+
+        self.assertEqual(new_text, '<bar foo="bar" baz="qux"> foo </bar>')
+
+    def test_replace_with_multiple_lines(self):
+        tag_replacer = TagReplacer()
+        old_text = """
+        <foo
+            foo="bar"
+            baz="qux">
+            foo
+        </foo>"""
+        new_text = tag_replacer.replace(old_text, "foo", "bar")
+
+        expected_text = """
+        <bar
+            foo="bar"
+            baz="qux">
+            foo
+        </bar>"""
+
+        self.assertEqual(new_text, expected_text)
 
 
 if __name__ == "__main__":
