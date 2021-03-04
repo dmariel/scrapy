@@ -1,6 +1,5 @@
 import os
 
-from pytest import mark
 from twisted.trial import unittest
 
 from scrapy.utils.iterators import csviter, xmliter, _body_or_str, xmliter_lxml, TagReplacer
@@ -222,7 +221,6 @@ class XmliterTestCase(unittest.TestCase):
         node = next(my_iter)
         node.register_namespace('g', 'http://base.google.com/ns/1.0')
         self.assertEqual(node.xpath('text()').extract(), ['http://www.mydummycompany.com/images/item1.jpg'])
-
 
     def test_xmliter_namespaced_nodename_missing(self):
         body = b"""
@@ -513,7 +511,9 @@ class TestHelper(unittest.TestCase):
                         f'Got {type(a)}, expected {type(b)} for { obj!r}')
         self.assertEqual(a, b)
 
+
 class TestTagReplacer(unittest.TestCase):
+
     def test_replace_str(self):
         tag_replacer = TagReplacer()
         old_str = "<foo>foo</foo>"
@@ -570,35 +570,35 @@ class TestTagReplacer(unittest.TestCase):
             tag_replacer.replace("foo", 1, "b ar")
 
     def test_replace_should_not_replace_text_nodes(self):
-        tag_replacer  = TagReplacer()
+        tag_replacer = TagReplacer()
         old_text = "<foo> bar </foo>"
         new_text = tag_replacer.replace(old_text, "bar", "foo")
 
         self.assertEqual(old_text, new_text)
 
     def test_replace_should_not_replace_attribute_keys(self):
-        tag_replacer  = TagReplacer()
+        tag_replacer = TagReplacer()
         old_text = '<foo bar="foo"> foo </foo>'
         new_text = tag_replacer.replace(old_text, "bar", "foo")
 
         self.assertEqual(old_text, new_text)
 
     def test_replace_should_not_replace_attribute_values(self):
-        tag_replacer  = TagReplacer()
+        tag_replacer = TagReplacer()
         old_text = '<foo foo="bar"> foo </foo>'
         new_text = tag_replacer.replace(old_text, "bar", "foo")
 
         self.assertEqual(old_text, new_text)
 
     def test_replace_with_multiple_attributes(self):
-        tag_replacer  = TagReplacer()
+        tag_replacer = TagReplacer()
         old_text = '<foo foo="bar" baz="qux"> foo </foo>'
         new_text = tag_replacer.replace(old_text, "foo", "bar")
 
         self.assertEqual(new_text, '<bar foo="bar" baz="qux"> foo </bar>')
 
     def test_replace_with_multiple_lines(self):
-        tag_replacer  = TagReplacer()
+        tag_replacer = TagReplacer()
         old_text = """
         <foo
             foo="bar"
@@ -615,6 +615,7 @@ class TestTagReplacer(unittest.TestCase):
         </bar>"""
 
         self.assertEqual(new_text, expected_text)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -52,6 +52,7 @@ def xmliter(obj, nodename):
         )
         yield Selector(text=nodetext, type='xml')
 
+
 class TagReplacer():
     def __init__(self, default_encoding='utf-8'):
         self.default_encoding = default_encoding
@@ -81,7 +82,7 @@ class TagReplacer():
         return self._encode_as(new_text, obj)
 
     def _sub_tags(self, old_tag, new_tag, text):
-        old_tag_pattern = r'(?<!\\<\/)'+old_tag+'(?=((\s+\w+=".+")\s*)*>)'
+        old_tag_pattern = r'(?<!\\<\/)' + old_tag + r'(?=((\s+\w+=".+")\s*)*>)'
         return re.sub(old_tag_pattern, new_tag, text, re.MULTILINE)
 
     def _validate_tag_name(self, tag):
@@ -89,7 +90,7 @@ class TagReplacer():
             return False
 
         return re.match(r"^[a-z0-9-:_]{1,}$", tag) is not None
-    
+
     def _decode(self, obj):
         decoded = None
         # Decode to string
@@ -103,7 +104,7 @@ class TagReplacer():
             raise TypeError("Unsupported type")
 
         return decoded
-    
+
     def _encode_as(self, newBody, oldObj):
         if isinstance(oldObj, Response):
             return oldObj.replace(body=newBody)
@@ -115,15 +116,14 @@ class TagReplacer():
             raise TypeError("Unsupported type")
 
 
-
 def xmliter_lxml(obj, nodename, namespace=None, prefix='x'):
     from lxml import etree
     nodename_sanitized = nodename
     obj_sanitized = obj
     if nodename.find(":") > 0:
-        nodename_sanitized =  nodename.replace(":", "-")
+        nodename_sanitized = nodename.replace(":", "-")
         tag_replacer = TagReplacer()
-        obj_sanitized =  tag_replacer.replace(obj, nodename, nodename_sanitized)
+        obj_sanitized = tag_replacer.replace(obj, nodename, nodename_sanitized)
     reader = _StreamReader(obj_sanitized)
     tag = f'{{{namespace}}}{nodename_sanitized}' if namespace else nodename_sanitized
     iterable = etree.iterparse(reader, tag=tag, encoding=reader.encoding)
