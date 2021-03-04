@@ -52,15 +52,68 @@ def xmliter(obj, nodename):
         )
         yield Selector(text=nodetext, type='xml')
 
+class TagReplacer():
+    def __init__(self, default_encoding='utf-8'):
+        self.default_encoding = default_encoding
 
-def _replace_all(obj, old, new):
-    if isinstance(obj, Response):
-        return obj.replace(body=obj.text.replace(old, new))
-    elif isinstance(obj, str):
-        return obj.replace(old, new)
-    elif isinstance(obj, bytes):
-        return obj.decode().replace(old, new).encode()
-    return obj
+    def replace(self, obj, old_tag, new_tag):
+        """Replace all occurrences of old_tag to new_tag
+
+        Args:
+            obj (str|bytes|Response): The object that has the xml/html that should be changed
+            old_tag (str): a valid tag name to replace
+            new_tag (str): the new tag replacement
+
+        Raises:
+            TypeError:  if the passed obj is not of a valid type
+            ValueError: is the passed tag names are not valid
+
+        Returns:
+            [str|bytes|Response]: return the new replaced object
+        """
+        if not self._validate_tag_name(old_tag):
+            raise ValueError("invalid old_tag")
+        if not self._validate_tag_name(new_tag):
+            raise ValueError("invalid new_tag")
+
+        decoded_text = self._decode(obj)
+        new_text = self._sub_tags(old_tag, new_tag, decoded_text)
+        return self._encode_as(new_text, obj)
+
+    def _sub_tags(self, old_tag, new_tag, text):
+        old_tag_pattern = r'(?<!\\<\/)'+old_tag+'(?=((\s+\w+=".+")\s*)*>)'
+        return re.sub(old_tag_pattern, new_tag, text, re.MULTILINE)
+
+    def _validate_tag_name(self, tag):
+        if not isinstance(tag, str):
+            return False
+
+        return re.match(r"^[a-z0-9-:_]{1,}$", tag) is not None
+    
+    def _decode(self, obj):
+        decoded = None
+        # Decode to string
+        if isinstance(obj, Response):
+            decoded = obj.text
+        elif isinstance(obj, str):
+            decoded = obj
+        elif isinstance(obj, bytes):
+            decoded = obj.decode(self.default_encoding)
+        else:
+            raise TypeError("Unsupported type")
+
+        return decoded
+    
+    def _encode_as(self, newBody, oldObj):
+        if isinstance(oldObj, Response):
+            return oldObj.replace(body=newBody)
+        elif isinstance(oldObj, str):
+            return newBody
+        elif isinstance(oldObj, bytes):
+            return newBody.encode(self.default_encoding)
+        else:
+            raise TypeError("Unsupported type")
+
 
 
 def xmliter_lxml(obj, nodename, namespace=None, prefix='x'):
@@ -69,7 +122,8 @@ def xmliter_lxml(obj, nodename, namespace=None, prefix='x'):
     obj_sanitized = obj
     if nodename.find(":") > 0:
         nodename_sanitized =  nodename.replace(":", "-")
-        obj_sanitized =  _replace_all(obj, nodename, nodename_sanitized)
+        tag_replacer = TagReplacer()
+        obj_sanitized =  tag_replacer.replace(obj, nodename, nodename_sanitized)
     reader = _StreamReader(obj_sanitized)
     tag = f'{{{namespace}}}{nodename_sanitized}' if namespace else nodename_sanitized
     iterable = etree.iterparse(reader, tag=tag, encoding=reader.encoding)
